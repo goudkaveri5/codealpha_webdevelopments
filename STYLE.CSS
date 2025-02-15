@@ -1,0 +1,234 @@
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.logout-btn {
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+    color: white;
+}
+
+.edit-btn {
+    background: linear-gradient(45deg, #1d2b64, #f8cdda);
+    color: white;
+}
+
+.accept-btn {
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    color: white;
+}
+
+.decline-btn {
+    background: linear-gradient(45deg, #dd2476, #ff512f);
+    color: white;
+}
+
+.post-btn {
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+    color: white;
+}
+
+.comment-btn {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: black;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.friend-request {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.friends-list, .news-feed {
+    margin-top: 20px;
+}
+
+.comment-section {
+    margin-top: 10px;
+    background: #222;
+    padding: 10px;
+    border-radius: 5px;
+}
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.logout-btn {
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+    color: white;
+}
+
+.edit-btn {
+    background: linear-gradient(45deg, #1d2b64, #f8cdda);
+    color: white;
+}
+
+.accept-btn {
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    color: white;
+}
+
+.decline-btn {
+    background: linear-gradient(45deg, #dd2476, #ff512f);
+    color: white;
+}
+
+.post-btn {
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+    color: white;
+}
+
+.comment-btn {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: black;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.friend-request {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.friends-list, .news-feed {
+    margin-top: 20px;
+}
+
+.comment-section {
+    margin-top: 10px;
+    background: #222;
+    padding: 10px;
+    border-radius: 5px;
+}
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.logout-btn {
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+    color: white;
+}
+
+.edit-btn {
+    background: linear-gradient(45deg, #1d2b64, #f8cdda);
+    color: white;
+}
+
+.accept-btn {
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    color: white;
+}
+
+.decline-btn {
+    background: linear-gradient(45deg, #dd2476, #ff512f);
+    color: white;
+}
+
+.post-btn {
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+    color: white;
+}
+
+.comment-btn {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: black;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.friend-request {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.friends-list, .news-feed {
+    margin-top: 20px;
+}
+
+.comment-section {
+    margin-top: 10px;
+    background: #222;
+    padding: 10px;
+    border-radius: 5px;
+}

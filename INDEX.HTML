@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySocial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1877f2;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .section {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .logout-btn { background: #ff4b2b; }
+        .edit-btn { background: #1d2b64; }
+        .send-request-btn { background: #ff9a9e; }
+        .post-btn { background: #00b09b; }
+        .accept-btn { background: green; }
+        .decline-btn { background: red; }
+        .like-btn { background: #1877f2; }
+        .comment-btn { background: #f39c12; }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        .likes, .comments {
+            font-size: 14px;
+            color: gray;
+            margin-top: 5px;
+        }
+
+        .comment-box {
+            display: flex;
+            margin-top: 5px;
+        }
+
+        .comment-box input {
+            flex: 1;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .comment-box button {
+            background: #1877f2;
+            margin-left: 5px;
+            padding: 6px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>MySocial</h1>
+    
+    <div class="container">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+
+        <div class="section">
+            <p><strong>Username:</strong> <span id="username">JohnDoe</span></p>
+            <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+        </div>
+
+        <h2>Friend Requests</h2>
+        <div class="section friend-requests">
+            <div class="friend-request">
+                <p>Jane Doe</p>
+                <button class="accept-btn" onclick="acceptRequest(this)">✔ Accept</button>
+                <button class="decline-btn" onclick="declineRequest(this)">✖ Decline</button>
+            </div>
+            <div class="friend-request">
+                <p>Mike Smith</p>
+                <button class="accept-btn" onclick="acceptRequest(this)">✔ Accept</button>
+                <button class="decline-btn" onclick="declineRequest(this)">✖ Decline</button>
+            </div>
+        </div>
+
+        <h2>Friends List</h2>
+        <div class="section friends-list">
+            <p>No friends added yet.</p>
+        </div>
+
+        <button class="send-request-btn" onclick="sendFriendRequest()">Send Friend Request</button>
+
+        <h2>Create Post</h2>
+        <div class="section create-post">
+            <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+            <button class="post-btn" onclick="createPost()">Post</button>
+        </div>
+
+        <h2>News Feed</h2>
+        <div class="section news-feed" id="posts"></div>
+    </div>
+
+    <script>
+        function logout() {
+            document.body.innerHTML = `
+                <h1 style="color: #1877f2; margin-top: 20%;">You have been logged out.</h1>
+                <button onclick="location.reload()" style="padding: 10px 20px; font-size: 16px; background: #ff4b2b; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Go Back to Login
+                </button>
+            `;
+        }
+
+        function editProfile() {
+            let newName = prompt("Enter new username:");
+            if (newName) {
+                document.getElementById("username").innerText = newName;
+            }
+        }
+
+        function createPost() {
+            let postContent = document.getElementById("postContent").value;
+            if (postContent.trim() === "") {
+                alert("Post cannot be empty!");
+                return;
+            }
+
+            let postDiv = document.createElement("div");
+            postDiv.classList.add("section");
+            postDiv.innerHTML = `
+                <p>${postContent}</p>
+                <button class="like-btn" onclick="likePost(this)">Like</button>
+                <span class="likes">0 Likes</span>
+                <button class="comment-btn" onclick="toggleCommentBox(this)">Comment</button>
+                <div class="comments"></div>
+            `;
+
+            document.getElementById("posts").prepend(postDiv);
+            document.getElementById("postContent").value = "";
+        }
+
+        function likePost(button) {
+            let likesText = button.nextElementSibling;
+            let currentLikes = parseInt(likesText.innerText) || 0;
+            likesText.innerText = (currentLikes + 1) + " Likes";
+        }
+
+        function toggleCommentBox(button) {
+            let post = button.parentElement;
+            let commentSection = post.querySelector(".comments");
+
+            if (!commentSection.innerHTML) {
+                commentSection.innerHTML = `
+                    <div class="comment-box">
+                        <input type="text" placeholder="Write a comment..." class="comment-input">
+                        <button onclick="addComment(this)">Post</button>
+                    </div>
+                `;
+            } else {
+                commentSection.innerHTML = "";
+            }
+        }
+
+        function addComment(button) {
+            let commentInput = button.previousElementSibling;
+            let commentText = commentInput.value.trim();
+            if (commentText === "") return;
+
+            let commentDiv = document.createElement("p");
+            commentDiv.innerText = commentText;
+            button.parentElement.parentElement.appendChild(commentDiv);
+            commentInput.value = "";
+        }
+
+        function sendFriendRequest() {
+            let friendRequestsDiv = document.querySelector(".friend-requests");
+            let requestHTML = `
+                <div class="friend-request">
+                    <p>JohnDoe sent you a friend request.</p>
+                    <button class="accept-btn" onclick="acceptRequest(this)">Accept</button>
+                    <button class="decline-btn" onclick="declineRequest(this)">Decline</button>
+                </div>
+            `;
+            friendRequestsDiv.innerHTML += requestHTML;
+        }
+
+        function acceptRequest(button) {
+            let friendName = button.parentElement.querySelector("p").innerText;
+            let friendsListDiv = document.querySelector(".friends-list");
+
+            if (friendsListDiv.innerText.includes("No friends added yet.")) {
+                friendsListDiv.innerHTML = "";
+            }
+
+            let newFriend = document.createElement("p");
+            newFriend.innerText = friendName;
+            friendsListDiv.appendChild(newFriend);
+
+            button.parentElement.remove();
+        }
+
+        function declineRequest(button) {
+            button.parentElement.remove();
+        }
+    </script>
+
+</body>
+</html>
