@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Book Library</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+      padding-top: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    #searchInput, #categoryFilter {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    #bookList {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .book-item {
+      background-color: #fafafa;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .book-item h3 {
+      margin: 0;
+    }
+
+    .book-item p {
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Book Library</h1>
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" placeholder="Search books..." oninput="filterBooks()">
+    
+    <!-- Category Filter -->
+    <select id="categoryFilter" onchange="filterBooks()">
+      <option value="">All Categories</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Non-fiction">Non-fiction</option>
+      <option value="Biography">Biography</option>
+    </select>
+
+    <h2>Books</h2>
+    <div id="bookList">
+      <!-- List of Books will appear here -->
+    </div>
+  </div>
+
+  <script>
+    const books = [
+      { title: "To Kill a Mockingbird", author: "Harper Lee", category: "Fiction" },
+      { title: "1984", author: "George Orwell", category: "Fiction" },
+      { title: "The Immortal Life of Henrietta Lacks", author: "Rebecca Skloot", category: "Non-fiction" },
+      { title: "The Wright Brothers", author: "David McCullough", category: "Biography" },
+      { title: "The Catcher in the Rye", author: "J.D. Salinger", category: "Fiction" },
+      { title: "Sapiens: A Brief History of Humankind", author: "Yuval Noah Harari", category: "Non-fiction" }
+    ];
+
+    // Function to display books
+    function displayBooks(filteredBooks) {
+      const bookList = document.getElementById("bookList");
+      bookList.innerHTML = ""; // Clear previous books
+
+      filteredBooks.forEach(book => {
+        const bookItem = document.createElement("div");
+        bookItem.classList.add("book-item");
+        bookItem.innerHTML = `
+          <h3>${book.title}</h3>
+          <p>by ${book.author}</p>
+          <p>Category: ${book.category}</p>
+        `;
+        bookList.appendChild(bookItem);
+      });
+    }
+
+    // Function to filter books based on search and category
+    function filterBooks() {
+      const searchQuery = document.getElementById("searchInput").value.toLowerCase();
+      const selectedCategory = document.getElementById("categoryFilter").value;
+
+      const filteredBooks = books.filter(book => {
+        const matchesSearch = book.title.toLowerCase().includes(searchQuery) || book.author.toLowerCase().includes(searchQuery);
+        const matchesCategory = selectedCategory ? book.category === selectedCategory : true;
+        return matchesSearch && matchesCategory;
+      });
+
+      displayBooks(filteredBooks);
+    }
+
+    // Initial display of all books
+    window.onload = () => {
+      displayBooks(books);
+    };
+  </script>
+</body>
+</html>
